@@ -1,0 +1,10 @@
+
+[icons8_sync, icons8_left, icons8_right]
+https://icons8.com
+Provided by icons8.com using their Free plan
+
+
+
+[key_icon, refined_metal_icon, reclaimed_metal_icon, scrap_metal_icon, weapon_icon]
+https://wiki.teamfortress.com
+Original IP: Team Fortress 2 by Valve Corporation
