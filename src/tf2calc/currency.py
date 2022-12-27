@@ -56,11 +56,23 @@ class CurrencyContainer:
         return False
 
     def price_to_currency(self, price: float, window_ref):
-        remaining = self.value_to_key(price)[0]
-        remaining = self.value_to_ref(remaining)[0]
-        remaining = round(self.value_to_rec(remaining)[0], 2)
-        remaining = self.value_to_scrap(remaining)[0]
-        self.value_to_wep(remaining)
+        remaining = price
+        if window_ref.KeyItemFrame.Toggled.get():
+            remaining = self.value_to_key(price)[0]
+        if window_ref.RefItemFrame.Toggled.get():
+            remaining = self.value_to_ref(remaining)[0]
+        if window_ref.RecItemFrame.Toggled.get():
+            remaining = round(self.value_to_rec(remaining)[0], 2)
+        if window_ref.ScrapItemFrame.Toggled.get():
+            remaining = self.value_to_scrap(remaining)[0]
+        if window_ref.WeaponItemFrame.Toggled.get():
+            if not any([window_ref.KeyItemFrame.Toggled.get(),
+                 window_ref.RefItemFrame.Toggled.get(),
+                 window_ref.RecItemFrame.Toggled.get(),
+                 window_ref.ScrapItemFrame.Toggled.get()]):
+                self.value_to_wep_solo(remaining)
+            else:
+                self.value_to_wep(remaining)
         window_ref.update_item_count()
 
     def value_to_key(self, value: float) -> (float, float):
@@ -88,6 +100,11 @@ class CurrencyContainer:
 
     def value_to_wep(self, value: float) -> (float, float):
         new_wep_amount = int((value * 100) / 5) if value >= 0.05 else 0.0
+        self.change_item_amount("Weapon", new_wep_amount)
+        return ((value * 100 % 5) * 0.01, new_wep_amount)
+
+    def value_to_wep_solo(self, value: float) -> (float, float):
+        new_wep_amount = int((value * 100) / 5.5555) if value >= 0.05 else 0.0
         self.change_item_amount("Weapon", new_wep_amount)
         return ((value * 100 % 5) * 0.01, new_wep_amount)
 

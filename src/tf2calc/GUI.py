@@ -318,6 +318,13 @@ class MainWindow():
         self.ScrapItemFrame.update_currency_amount(self.currency_container.get_currency_item('ScrapMetal').count)
         self.WeaponItemFrame.update_currency_amount(self.currency_container.get_currency_item('Weapon').count)
 
+    def reset_item_count_text(self):
+        self.KeyItemFrame.update_currency_amount(0)
+        self.RefItemFrame.update_currency_amount(0)
+        self.RecItemFrame.update_currency_amount(0)
+        self.ScrapItemFrame.update_currency_amount(0)
+        self.WeaponItemFrame.update_currency_amount(0)
+
 
 
 class CurrencyFrame:
@@ -331,6 +338,10 @@ class CurrencyFrame:
 
         self.item_count = StringVar(self.root)
         self.item_count.set("0")
+        self.item_count_rev = self.item_count.get()
+
+        self.Toggled = BooleanVar(self.root)
+        self.Toggled.set(True)
 
 
         # ----- Main Widget -----
@@ -338,14 +349,21 @@ class CurrencyFrame:
         self.ItemFrame = Frame(self.frame_ref, bg=MAINGRAY_BG)
         self.ItemFrame.grid(row=self.row, column=0, columnspan=2)
 
+        self.Checkbox = Checkbutton(self.ItemFrame,
+                                    bg=MAINGRAY_BG,
+                                    variable=self.Toggled,
+                                    activebackground=MAINGRAY_BG,
+                                    command=self.currency_toggle)
+        self.Checkbox.grid(row=0, column=0)
+
         self.ItemIcon = Label(self.ItemFrame,
                               image=self.image,
                               bg=MAINGRAY_BG,
                               padx=5)
-        self.ItemIcon.grid(row=0, column=0, columnspan=2)
+        self.ItemIcon.grid(row=0, column=1, columnspan=2)
 
         self.ItemEntryFrame = Frame(self.ItemFrame, bg=MAINGRAY_BG)
-        self.ItemEntryFrame.grid(row=0, column=2, columnspan=2)
+        self.ItemEntryFrame.grid(row=0, column=3, columnspan=2)
 
         self.xText = Label(self.ItemEntryFrame,
                            bg=MAINGRAY_BG,
@@ -374,3 +392,11 @@ class CurrencyFrame:
         if self.item_count.get().islower() or self.item_count.get().isupper():
             self.AmountEntry.delete(len(self.AmountEntry.get())-1, END)
         self.window_ref.currency_container.change_item_amount(self.item_name, int(self.item_count.get()))
+
+    def currency_toggle(self):
+        if self.Toggled:
+            self.item_count_rev = self.item_count.get()
+            self.item_count.set("0")
+        else:
+            self.item_count.set(self.item_count_rev)
+        self.window_ref.price_to_currency()
