@@ -86,7 +86,7 @@ class MainWindow():
         self.MainFrame.pack(fill=X)
 
         # Top Frame
-        self.TopFrame = Frame(self.MainFrame)
+        self.TopFrame = Frame(self.MainFrame, bg=MAINGRAY_BG)
         self.TopFrame.grid(row=0, column=0, columnspan=10)
         self.TopFrame.grid(sticky="we")
 
@@ -157,23 +157,23 @@ class MainWindow():
         self.KeyPriceText.bind('<FocusOut>', self.restore_key_value)
         self.MetalPriceText.bind('<FocusOut>', self.restore_metal_value)
 
-            # Last Update Date Text
-        self.LastPriceText = Label(self.MetalPriceFrame,
-                                      padx=8,
-                                      bg=LIGHTERGRAY_BG,
-                                      font=("Arial", 12),
-                                      text="[01/12/2022]",
-                                      fg="white")
-        self.LastPriceText.grid(row=0, column=5)
-
-        # Refresh Key, Metal Price
-        self.PriceUpdateButton = Button(self.MetalPriceFrame,
-                                   padx=5,
-                                   bg=LIGHTGRAY_BG,
-                                   font=("Arial", 10, "bold"),
-                                   text="UPDATE PRICES",
-                                   fg="white", image=RESYNC_ICON, compound=RIGHT)
-        self.PriceUpdateButton.grid(row=0, column=6)
+        #     # Last Update Date Text
+        # self.LastPriceText = Label(self.MetalPriceFrame,
+        #                               padx=8,
+        #                               bg=LIGHTERGRAY_BG,
+        #                               font=("Arial", 12),
+        #                               text="as suggested by",
+        #                               fg="white")
+        # self.LastPriceText.grid(row=0, column=5)
+        #
+        # # Refresh Key, Metal Price
+        # self.PriceUpdateButton = Button(self.MetalPriceFrame,
+        #                            padx=5,
+        #                            bg=LIGHTGRAY_BG,
+        #                            font=("Arial", 10, "bold"),
+        #                            text="UPDATE PRICES",
+        #                            fg="white", image=RESYNC_ICON, compound=RIGHT)
+        # self.PriceUpdateButton.grid(row=0, column=6)
 
 
         # Bottom Frame

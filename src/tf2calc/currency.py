@@ -38,9 +38,6 @@ class CurrencyContainer:
         for item in currency_value.keys():
             self.add_currency(CurrencyItem(item))
 
-    def update_currencies(self):
-        refmetal_usd_value
-
     def add_currency(self, item_to_add: CurrencyItem):
         if item_to_add not in self.currency_items:
             self.currency_items.append(item_to_add)
