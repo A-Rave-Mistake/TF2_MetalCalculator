@@ -3,4 +3,4 @@ Team Fortress 2 Metal Calculator - enter total item price and display respective
   
 Uses API supplied by https://backpack.tf for tracking current key and metal values.  
   
-  ![image](https://i.imgur.com/UjWnmNM.jpg)
+  ![image](https://i.imgur.com/vSs6VJs.jpg)
