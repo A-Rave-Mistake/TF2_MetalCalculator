@@ -1,10 +1,10 @@
-from utils import is_price_input_valid
+from utils import get_new_prices
 
+prices = get_new_prices()
 
-
-refmetal_usd_value = 0.038
+refmetal_usd_value = prices[1][1]
 currency_value =    {
-                        "Key": 63.77,
+                        "Key": prices[0][1],
                         "RefinedMetal": 1.0,
                         "ReclaimedMetal": 0.33333,
                         "ScrapMetal": 0.11111,
@@ -37,6 +37,9 @@ class CurrencyContainer:
         self.currency_items: list[CurrencyItem] = []
         for item in currency_value.keys():
             self.add_currency(CurrencyItem(item))
+
+    def update_currencies(self):
+        refmetal_usd_value
 
     def add_currency(self, item_to_add: CurrencyItem):
         if item_to_add not in self.currency_items:

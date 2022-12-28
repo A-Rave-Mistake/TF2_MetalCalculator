@@ -1,8 +1,8 @@
 from tkinter import *
 from PIL import Image, ImageTk
 
-from currency import currency_value, refmetal_usd_value
 from utils import is_price_input_valid, is_metal_input_valid
+from currency import refmetal_usd_value, currency_value
 
 
 
